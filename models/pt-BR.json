@@ -1,0 +1,295 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "casos de covid",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "GetEstadoIntent",
+                    "slots": [
+                        {
+                            "name": "estado",
+                            "type": "estado"
+                        }
+                    ],
+                    "samples": [
+                        "casos em {estado}",
+                        "quero saber sobre {estado}",
+                        "me fale sobre {estado}",
+                        "{estado}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "estado",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "goiás",
+                                "synonyms": [
+                                    "GO"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "tocantins",
+                                "synonyms": [
+                                    "TO"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "sergipe",
+                                "synonyms": [
+                                    "SE"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "são paulo",
+                                "synonyms": [
+                                    "SP"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "santa catarina",
+                                "synonyms": [
+                                    "SC"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "roraima",
+                                "synonyms": [
+                                    "RR"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "rondônia",
+                                "synonyms": [
+                                    "RO"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "rio grande do sul",
+                                "synonyms": [
+                                    "RS"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "rio grande do norte",
+                                "synonyms": [
+                                    "RN"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "rio de janeiro",
+                                "synonyms": [
+                                    "RJ"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "piauí",
+                                "synonyms": [
+                                    "PI"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "pernambuco",
+                                "synonyms": [
+                                    "PE"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "paraná",
+                                "synonyms": [
+                                    "PR"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "paraíba",
+                                "synonyms": [
+                                    "PB"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "pará",
+                                "synonyms": [
+                                    "PA"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "minas gerais",
+                                "synonyms": [
+                                    "MG"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "mato grosso do sul",
+                                "synonyms": [
+                                    "MS"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "mato grosso",
+                                "synonyms": [
+                                    "MT"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "maranhão",
+                                "synonyms": [
+                                    "MA"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "espírito santo",
+                                "synonyms": [
+                                    "ES"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "distrito federal",
+                                "synonyms": [
+                                    "DF"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ceará",
+                                "synonyms": [
+                                    "CE"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bahia",
+                                "synonyms": [
+                                    "BA"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "amazonas",
+                                "synonyms": [
+                                    "AM"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "amapá",
+                                "synonyms": [
+                                    "AP"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "alagoas",
+                                "synonyms": [
+                                    "AL"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "acre",
+                                "synonyms": [
+                                    "AC"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "GetEstadoIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "estado",
+                            "type": "estado",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1584916452954.57765555936"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.1584916452954.57765555936",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Qual o estado que você está procurando informações ?"
+                    }
+                ]
+            }
+        ]
+    }
+}

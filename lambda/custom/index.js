@@ -5,6 +5,7 @@
  * */
 const Alexa = require('ask-sdk-core');
 var axios = require("axios").default;
+var moment = require('moment');
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -26,94 +27,11 @@ const GetEstadoIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetEstadoIntent';
     },
     async handle(handlerInput) {
-        var estado = handlerInput.requestEnvelope.request.intent.slots.estado.value;
-        var codigo;
-        let speakOutput = 'Hello World!';
-        
-        switch (estado) {
-            case 'acre':
-                codigo = 0;
-                break;
-            case 'alagoas':
-                codigo = 1;
-                break;
-            case 'amapá':
-                codigo = 2;
-                break;
-            case 'amazonas':
-                codigo = 3;
-                break;
-            case 'bahia':
-                codigo = 4;
-                break;
-            case 'ceará':
-                codigo = 5;
-                break;
-            case 'distrito federal':
-                codigo = 6;
-                break;
-            case 'espírito santo':
-                codigo = 7;
-                break;
-            case 'goiás':
-                codigo = 8;
-                break;
-            case 'maranhão':
-                codigo = 9;
-                break;
-            case 'mato grosso':
-                codigo = 10;
-                break;
-            case 'mato grosso do sul':
-                codigo = 11;
-                break;
-            case 'minas gerais':
-                codigo = 12;
-                break;
-            case 'pará':
-                codigo = 13;
-                break;
-            case 'paraíba':
-                codigo = 14;
-                break;
-            case 'paraná':
-                codigo = 15;
-                break;
-            case 'pernambuco':
-                codigo = 16;
-                break;
-            case 'piauí':
-                codigo = 17;
-                break;
-            case 'rio de janeiro':
-                codigo = 18;
-                break;
-            case 'rio grande do norte':
-                codigo = 19;
-                break;
-            case 'rio grande do sul':
-                codigo = 20;
-                break;
-            case 'rondônia':
-                codigo = 21;
-                break;
-            case 'roraima':
-                codigo = 22;
-                break;
-            case 'santa catarina':
-                codigo = 23;
-                break;
-            case 'são paulo':
-                codigo = 24;
-                break;
-            case 'sergipe':
-                codigo = 25;
-                break;
-            case 'tocantins':
-                codigo = 26;
-                break;
-        }
-        
+        // var estado = handlerInput.requestEnvelope.request.intent.slots.estado.value;
+        var estado = handlerInput.requestEnvelope.request.intent.slots.estado.resolutions.resolutionsPerAuthority[0].values[0].value.id;
+        let speakOutput = `O que você procura é: ${estado}`;
+        // let speakOutput = 'Hello World!';
+
         var options = {
           method: 'GET',
           url: 'https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats',
@@ -125,7 +43,9 @@ const GetEstadoIntentHandler = {
         };
         
         await axios.request(options).then(function (response) {
-        	speakOutput = `Hoje, ${response.data.data.lastChecked}, o estado ${response.data.data.covid19Stats[codigo].province}, são: ${response.data.data.covid19Stats[codigo].confirmed} os confirmados; ${response.data.data.covid19Stats[codigo].deaths} os mortos; e ${response.data.data.covid19Stats[codigo].recovered} os recuperados, na data de hoje.`;
+        	speakOutput = `Hoje, ${moment(response.data.data.covid19Stats[estado].lastUpdate).locale('pt-br').format('lll')} foi a última atualização para os resultados: ${response.data.data.covid19Stats[estado].confirmed} novos casos confirmados; 
+                                    ${response.data.data.covid19Stats[estado].deaths} mortos; e ${response.data.data.covid19Stats[estado].recovered} recuperados, 
+                                    para ${response.data.data.covid19Stats[estado].province}, no ${response.data.data.covid19Stats[estado].country}.`;
         }).catch(function (error) {
         	console.error(error);
         });
@@ -143,7 +63,7 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'You can say hello to me! How can I help?';
+        const speakOutput = 'Para procurar por algum estado você pode dizer o nome por extenso ou as iniciais, por exemplo: Minas Gerais ou MG.';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -159,7 +79,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Goodbye!';
+        const speakOutput = 'Até e fique em casa!';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -177,7 +97,7 @@ const FallbackIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Sorry, I don\'t know about that. Please try again.';
+        const speakOutput = 'Desculpa, mas, não lhe entendi. Por favor, repita de novo ou peça por ajuda.';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -229,7 +149,7 @@ const ErrorHandler = {
         return true;
     },
     handle(handlerInput, error) {
-        const speakOutput = 'Sorry, I had trouble doing what you asked. Please try again.';
+        const speakOutput = 'Desculpe, mas, tive um problema para pesquisar o que foi pedido. Por favor, tente novamente.';
         console.log(`~~~~ Error handled: ${JSON.stringify(error)}`);
 
         return handlerInput.responseBuilder
@@ -255,5 +175,5 @@ exports.handler = Alexa.SkillBuilders.custom()
         IntentReflectorHandler)
     .addErrorHandlers(
         ErrorHandler)
-    .withCustomUserAgent('sample/hello-world/v1.2')
+    .withCustomUserAgent('sample/casos-covid-brasil/v1.2')
     .lambda();

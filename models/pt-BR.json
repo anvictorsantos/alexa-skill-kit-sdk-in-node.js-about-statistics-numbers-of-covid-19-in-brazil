@@ -44,6 +44,52 @@
                         "localidade",
                         "estado"
                     ]
+                },
+                {
+                    "name": "GetPaisIntent",
+                    "slots": [],
+                    "samples": [
+                        "casos no brasil de covid",
+                        "casos de covid no brasil",
+                        "me fale sobre os casos de covid no brasil"
+                    ],
+                    "synonyms": [
+                        "país",
+                        "nação",
+                        "território"
+                    ]
+                },
+                {
+                    "name": "GetMundoIntent",
+                    "slots": [],
+                    "samples": [
+                        "casos no mundo de covid",
+                        "casos de covid no mundo",
+                        "casos de covid em todos os países",
+                        "me fale sobre os casos de covid no mundo"
+                    ],
+                    "synonyms": [
+                        "mundo",
+                        "globo",
+                        "países"
+                    ]
+                },
+                {
+                    "name": "GetMundoTotalIntent",
+                    "slots": [],
+                    "samples": [
+                        "total de casos no mundo",
+                        "total de casos de covid no mundo",
+                        "casos total no mundo de covid",
+                        "casos de covid total no mundo",
+                        "casos de covid total em todos os países",
+                        "me fale sobre o total de casos covid no mundo"
+                    ],
+                    "synonyms": [
+                        "mundo",
+                        "globo",
+                        "países"
+                    ]
                 }
             ],
             "types": [

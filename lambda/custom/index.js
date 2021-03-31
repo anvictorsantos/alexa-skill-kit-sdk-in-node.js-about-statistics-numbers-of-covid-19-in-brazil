@@ -12,11 +12,44 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Olá, sou a Alexa e estou aqui para lhe informar sobre casos da COVID-19, no Brasil. Sobre qual estado você gostaria de se informar ?';
+        const speakOutput = 'Olá, sou a Alexa e estou aqui para lhe informar sobre casos da COVID-19, no mundo e no Brasil. Sobre o que você deseja saber ?';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
+            .getResponse();
+    }
+};
+
+const GetPaisIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetPaisIntent';
+    },
+    async handle(handlerInput) {
+        let speakOutput = 'Hello World!';
+
+        var options = {
+            method: 'GET',
+            url: 'https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total',
+            params: {country: 'Brazil'},
+            headers: {
+                'x-rapidapi-key': '95d3bfa95dmsh76f8fca3dceb3e5p1af900jsne10a3ad92b93',
+                'x-rapidapi-host': 'covid-19-coronavirus-statistics.p.rapidapi.com'
+            }
+        };
+        
+        await axios.request(options).then(function (response) {
+        	speakOutput = `Hoje, ${moment(response.data.data.lastReported).locale('pt-br').format('lll')} foi a última atualização para o total dos seguintes resultados: ${response.data.data.confirmed} casos confirmados; 
+                                    ${response.data.data.deaths} mortos; e ${response.data.data.recovered} recuperados, 
+                                    no ${response.data.data.location}.`;
+        }).catch(function (error) {
+        	console.error(error);
+        });
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
     }
 };
@@ -43,9 +76,63 @@ const GetEstadoIntentHandler = {
         };
         
         await axios.request(options).then(function (response) {
-        	speakOutput = `Hoje, ${moment(response.data.data.covid19Stats[estado].lastUpdate).locale('pt-br').format('lll')} foi a última atualização para os resultados: ${response.data.data.covid19Stats[estado].confirmed} novos casos confirmados; 
+        	speakOutput = `Hoje, ${moment(response.data.data.covid19Stats[estado].lastUpdate).locale('pt-br').format('lll')} foi a última atualização para o total dos seguintes resultados: ${response.data.data.covid19Stats[estado].confirmed} casos confirmados; 
                                     ${response.data.data.covid19Stats[estado].deaths} mortos; e ${response.data.data.covid19Stats[estado].recovered} recuperados, 
                                     para ${response.data.data.covid19Stats[estado].province}, no ${response.data.data.covid19Stats[estado].country}.`;
+        }).catch(function (error) {
+        	console.error(error);
+        });
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+
+const GetMundoIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetMundoIntent';
+    },
+    async handle(handlerInput) {
+        // let speakOutput = 'Hello World!';
+
+        var options = {
+          method: 'GET',
+          url: 'https://api.covid19api.com/summary'
+        };
+        
+        await axios.request(options).then(function (response) {
+        	speakOutput = `Hoje, ${moment(response.data.Global.Date).locale('pt-br').format('lll')}, no mundo, será a última atualização para os novos resultados: ${response.data.Global.NewConfirmed} novos casos confirmados; 
+                                    ${response.data.Global.NewDeaths} novos mortos; e ${response.data.Global.NewRecovered} novos recuperados.`;
+        }).catch(function (error) {
+        	console.error(error);
+        });
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+
+const GetMundoTotalIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetMundoTotalIntent';
+    },
+    async handle(handlerInput) {
+        // let speakOutput = 'Hello World!';
+
+        var options = {
+          method: 'GET',
+          url: 'https://api.covid19api.com/summary'
+        };
+        
+        await axios.request(options).then(function (response) {
+        	speakOutput = `Hoje, ${moment(response.data.Global.Date).locale('pt-br').format('lll')}, no mundo, será a última atualização para o total dos seguintes resultados: ${response.data.Global.TotalConfirmed} casos confirmados; 
+                                    ${response.data.Global.TotalDeaths} mortos; e ${response.data.Global.TotalRecovered} recuperados.`;
         }).catch(function (error) {
         	console.error(error);
         });
@@ -168,6 +255,9 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
         GetEstadoIntentHandler,
+        GetPaisIntentHandler,
+        GetMundoIntentHandler,
+        GetMundoTotalIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         FallbackIntentHandler,

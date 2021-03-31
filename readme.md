@@ -1,18 +1,33 @@
-# API Starter - Alexa Skill Template
+# Notas sobre esse projeto
 
-This is an Alexa skill template that provides a simple example of a skill that calls an external API. The API used is the [api.open-notify.org API](http://api.open-notify.org/astros.json) which returns a list of the astronauts currently in space.
+Esse projeto foi desenvolvido a partir de bibliotecas opensource, em virtude de ser para cunho exclusivamente acadêmico.
+# API - COVID-19 Coronavirus Statistics - Free
+A API usada para buscar sobre o total de casos no Brasil e nos estados brasileiros, pode ser encontrada aqui: https://rapidapi.com/KishCom/api/covid-19-coronavirus-statistics
 
-### Live example
-To try a live example of this skill template, you can enable the [Ground Control Alexa skill](https://www.amazon.com/Dabble-Lab-Ground-Control/dp/B075CWGY1P/ref=sr_1_sc_1?ie=UTF8&qid=1514557483&sr=8-1-spell&keywords=grond+control+alexa+skill). Just say: `Alexa, enable Ground Control` and then `Alexa, open Ground Control`.
+# API - Coronavirus COVID19 API - Free
+A API usada para buscar sobre o total e novos casos no mundo, pode ser encontrada aqui: https://documenter.getpostman.com/view/10808728/SzS8rjbc#27454960-ea1c-4b91-a0b6-0468bb4e6712
 
-### Using this template
+# Lib's usadas:
 
-This template uses the [Alexa Skills Kit SDK 2.0 for Node.js](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs) and was designed to be used with the [Alexa Skills Kit Command-Line Interface](https://developer.amazon.com/docs/smapi/ask-cli-intro.html) (aka: ASK-CLI). After installing the ASK-CLI you can run the following command to setup a new skill project based on this template.
+# 1 - axios
+Utilizei da lib do axios para fazer as requisições nas API's acima, logo, a mesma pode ser encontrada aqui: https://github.com/axios/axios
 
-`$ ask new --url http://skilltemplates.com/templates.json`
+# 2 - moment
+Utilizei da lib do moment para tratar a data que vinha a partir das API's acima, logo, a mesma pode ser encontrada aqui: https://github.com/moment/moment
 
-After running the previous command you'll see of list of templates to choose from. Pick the template named `API Starter`. This will create a new folder named `./api-starter/` all of the code for the template will be located in that folder.
+# Obs.:
+Para as duas bibliotecas acima, eu tive de fazer duas modificações:
 
-### Video Tutorial
+    1 - A primeira encontra-se no arquivo `package.json`, a qual você deve inclu=i-las como dependências, assim:
 
-[coming soon]
+        Ex.:
+            "dependencies": {
+                "axios": "^0.21.1",
+                "moment": "^2.29.1"
+            } 
+    
+    2 - A segunda encontra-se no arquivo `index.js`, no qual você deve importá-las para usar, por exemplo:
+
+        Ex.:
+            var axios = require("axios").default;
+            var moment = require('moment');

@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="assets/alexa-skill-covid-512.png">
+  <br/>
+  <h1 align="center">Alexa Skill Kit SDK in Node.js about statistics numbers of COVID-19 in Brazil and its provinces</h1>
+</p>
+
 # Notas sobre esse projeto
 
 Esse projeto foi desenvolvido a partir de bibliotecas opensource, em virtude de ser para cunho exclusivamente acadêmico.

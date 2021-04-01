@@ -12,3 +12,7 @@ This project has only academics purpose. Here you can find informations about CO
 * [Coronavirus COVID19 API](https://documenter.getpostman.com/view/10808728/SzS8rjbc#27454960-ea1c-4b91-a0b6-0468bb4e6712) - The API used for total and news cases numbers in world
 * [axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
 * [moment](https://github.com/moment/moment) - A JavaScript date library for parsing, validating, manipulating, and formatting dates.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for detai

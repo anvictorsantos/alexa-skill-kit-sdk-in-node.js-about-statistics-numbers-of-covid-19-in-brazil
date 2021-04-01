@@ -5,33 +5,10 @@
 </p>
 
 This project has only academics purpose. Here you can find informations about COVID-19 numbers in world but for my purpose I use Brazil numbers and for its provinces. 
-# API - COVID-19 Coronavirus Statistics - Free
-A API usada para buscar sobre o total de casos no Brasil e nos estados brasileiros, pode ser encontrada aqui: https://rapidapi.com/KishCom/api/covid-19-coronavirus-statistics
 
-# API - Coronavirus COVID19 API - Free
-A API usada para buscar sobre o total e novos casos no mundo, pode ser encontrada aqui: https://documenter.getpostman.com/view/10808728/SzS8rjbc#27454960-ea1c-4b91-a0b6-0468bb4e6712
+## Built With
 
-# Lib's usadas:
-
-# 1 - axios
-Utilizei da lib do axios para fazer as requisições nas API's acima, logo, a mesma pode ser encontrada aqui: https://github.com/axios/axios
-
-# 2 - moment
-Utilizei da lib do moment para tratar a data que vinha a partir das API's acima, logo, a mesma pode ser encontrada aqui: https://github.com/moment/moment
-
-# Obs.:
-Para as duas bibliotecas acima, eu tive de fazer duas modificações:
-
-    1 - A primeira encontra-se no arquivo `package.json`, a qual você deve inclu=i-las como dependências, assim:
-
-        Ex.:
-            "dependencies": {
-                "axios": "^0.21.1",
-                "moment": "^2.29.1"
-            } 
-    
-    2 - A segunda encontra-se no arquivo `index.js`, no qual você deve importá-las para usar, por exemplo:
-
-        Ex.:
-            var axios = require("axios").default;
-            var moment = require('moment');
+* [COVID-19 Coronavirus Statistics API Documentation](https://rapidapi.com/KishCom/api/covid-19-coronavirus-statistics) - The API used for total numbers of cases in Brazil and its provinces
+* [Coronavirus COVID19 API](https://documenter.getpostman.com/view/10808728/SzS8rjbc#27454960-ea1c-4b91-a0b6-0468bb4e6712) - The API used for total and news cases numbers in world
+* [axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
+* [moment](https://github.com/moment/moment) - A JavaScript date library for parsing, validating, manipulating, and formatting dates.

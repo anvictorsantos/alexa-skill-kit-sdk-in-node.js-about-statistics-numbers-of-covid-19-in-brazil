@@ -4,9 +4,7 @@
   <h1 align="center">Alexa Skill Kit SDK in Node.js about statistics numbers of COVID-19 in Brazil and its provinces</h1>
 </p>
 
-# Notas sobre esse projeto
-
-Esse projeto foi desenvolvido a partir de bibliotecas opensource, em virtude de ser para cunho exclusivamente acadêmico.
+This project has only academics purpose. Here you can find informations about COVID-19 numbers in world but for my purpose I use Brazil numbers and for its provinces. 
 # API - COVID-19 Coronavirus Statistics - Free
 A API usada para buscar sobre o total de casos no Brasil e nos estados brasileiros, pode ser encontrada aqui: https://rapidapi.com/KishCom/api/covid-19-coronavirus-statistics
 

@@ -15,4 +15,4 @@ This project has only academics purpose. Here you can find informations about CO
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for detai
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
